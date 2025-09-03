@@ -52,9 +52,8 @@ The model is trained on a comprehensive dataset containing the following feature
 | Random Forest | 85.2% | 0.87 | 0.83 | 0.85 |
 | Logistic Regression | 82.1% | 0.84 | 0.80 | 0.82 |
 | SVM | 83.7% | 0.85 | 0.82 | 0.83 |
-| Gradient Boosting | 86.1% | 0.88 | 0.84 | 0.86 |
 
-*Best performing model: **Gradient Boosting** with 86.1% accuracy*
+*Best performing model: **Gradien** with 86.1% accuracy*
 
 ## 🗂️ Repository Structure
 
@@ -82,7 +81,6 @@ heart-disease-prediction/
 │
 ├── requirements.txt
 ├── README.md
-└── LICENSE
 ```
 
 ## 🏃‍♂️ Quick Start
