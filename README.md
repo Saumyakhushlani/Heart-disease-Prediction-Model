@@ -1,175 +1,130 @@
-# Heart Disease Prediction Using Machine Learning
+# ❤️ Heart Disease Prediction using Machine Learning
 
-A machine learning project that predicts the likelihood of heart disease in patients based on various clinical and demographic features. This model aims to assist healthcare professionals in early detection and risk assessment.
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
 
-## 🎯 Project Overview
+This repository contains a data science project that uses various machine learning models to predict the likelihood of a patient having heart disease based on their medical attributes.
 
-Heart disease remains one of the leading causes of death worldwide. This project leverages machine learning algorithms to analyze patient data and predict the probability of heart disease, enabling early intervention and preventive care strategies.
+## 📋 Table of Contents
+1. [Problem Definition](#-problem-definition)
+2. [Data Source](#-data-source)
+3. [Evaluation Metric](#-evaluation-metric)
+4. [Features & Data Dictionary](#-features--data-dictionary)
+5. [Project Workflow](#-project-workflow)
+6. [Final Results](#-final-results)
+7. [Technologies Used](#-technologies-used)
+8. [How to Run](#-how-to-run)
+9. [License](#-license)
 
-## 📊 Dataset
+## 🎯 Problem Definition
+The central question this project aims to answer is:
+> Given a patient's clinical parameters, can we build a machine learning model to accurately predict whether or not they have heart disease?
 
-The model is trained on a comprehensive dataset containing the following features:
+## 📊 Data Source
+The original data was sourced from the Cleveland database at the UCI Machine Learning Repository. A version is also available on Kaggle.
+* **UCI Machine Learning Repository:** [Heart Disease Data Set](https://archive.ics.uci.edu/ml/datasets/heart+Disease)
+* **Kaggle:** [Heart Disease Classification Dataset](https://www.kaggle.com/datasets/sumaiyatasmeem/heart-disease-classification-dataset)
 
-- **Age**: Patient's age in years
-- **Sex**: Gender (1 = male, 0 = female)
-- **Chest Pain Type**: Type of chest pain experienced
-- **Resting Blood Pressure**: Blood pressure at rest (mmHg)
-- **Cholesterol**: Serum cholesterol level (mg/dl)
-- **Fasting Blood Sugar**: Blood sugar level after fasting
-- **Resting ECG**: Electrocardiogram results at rest
-- **Max Heart Rate**: Maximum heart rate achieved during exercise
-- **Exercise Induced Angina**: Presence of exercise-induced chest pain
-- **ST Depression**: Exercise-induced ST depression
-- **Slope**: Slope of peak exercise ST segment
-- **Number of Major Vessels**: Vessels colored by fluoroscopy
-- **Thalassemia**: Blood disorder indicator
+## 📈 Evaluation Metric
+The primary goal for this proof-of-concept is to achieve **95% accuracy** in predicting the presence of heart disease.
 
-**Target Variable**: Presence of heart disease (1 = disease, 0 = no disease)
+## 📝 Features & Data Dictionary
+The dataset consists of 13 input features and 1 target variable.
 
-## 🚀 Features
+| Feature    | Description                                           | Notes                                                      |
+| :--------- | :---------------------------------------------------- | :--------------------------------------------------------- |
+| **age** | Age in years                                          |                                                            |
+| **sex** | (1 = male; 0 = female)                                |                                                            |
+| **cp** | Chest Pain Type                                       | 0: Typical, 1: Atypical, 2: Non-anginal, 3: Asymptomatic   |
+| **trestbps** | Resting blood pressure (mm Hg)                        | > 130-140 is cause for concern                             |
+| **chol** | Serum cholesterol (mg/dl)                             | > 200 is cause for concern                                 |
+| **fbs** | Fasting blood sugar > 120 mg/dl                       | (1 = true; 0 = false)                                      |
+| **restecg**| Resting electrocardiographic results                | 0: Normal, 1: ST-T wave abnormality, 2: Hypertrophy        |
+| **thalach**| Maximum heart rate achieved                           |                                                            |
+| **exang** | Exercise-induced angina                               | (1 = yes; 0 = no)                                          |
+| **oldpeak**| ST depression induced by exercise relative to rest    |                                                            |
+| **slope** | Slope of the peak exercise ST segment                 | 0: Upsloping, 1: Flatsloping, 2: Downsloping               |
+| **ca** | Number of major vessels (0-3) colored by fluoroscopy  |                                                            |
+| **thal** | Thallium stress result                                | 1/3: Normal, 6: Fixed defect, 7: Reversible defect         |
+| **target** | **Has heart disease** | **(1 = yes; 0 = no)** - **The Target Variable** |
 
-- **Data Preprocessing**: Comprehensive data cleaning and feature engineering
-- **Exploratory Data Analysis**: Detailed visualization and statistical analysis
-- **Multiple ML Algorithms**: Implementation of various classification algorithms
-- **Model Evaluation**: Performance comparison using multiple metrics
-- **Feature Importance**: Analysis of most predictive features
-- **Cross-Validation**: Robust model validation techniques
-- **Hyperparameter Tuning**: Optimized model parameters for best performance
+## 🛠️ Project Workflow
 
-## 🔧 Technologies Used
+The project followed a structured machine learning pipeline:
 
-- **Python 3.8+**
-- **Pandas** - Data manipulation and analysis
-- **NumPy** - Numerical computing
-- **Scikit-learn** - Machine learning algorithms
-- **Matplotlib & Seaborn** - Data visualization
-- **Jupyter Notebook** - Interactive development environment
+### 1. Exploratory Data Analysis (EDA)
+The dataset was thoroughly examined to understand its structure. This included checking for missing values (none were found), analyzing the class balance of the target variable, and creating visualizations to explore relationships between features.
 
-## 📈 Model Performance
+### 2. Model Selection and Baseline Results
+To identify the most promising algorithm, three different models were initially trained with their default parameters to establish a fair baseline.
 
-| Algorithm | Accuracy | Precision | Recall | F1-Score |
-|-----------|----------|-----------|---------|----------|
-| Random Forest | 85.2% | 0.87 | 0.83 | 0.85 |
-| Logistic Regression | 82.1% | 0.84 | 0.80 | 0.82 |
-| SVM | 83.7% | 0.85 | 0.82 | 0.83 |
+| Model | Baseline Accuracy |
+| :--- | :--- |
+| **Logistic Regression** | **83.61%** |
+| Random Forest Classifier | 81.97% |
+| K-Nearest Neighbors (KNN) | 63.93% |
 
-*Best performing model: **Gradien** with 86.1% accuracy*
+Based on these results, the K-Nearest Neighbors model was eliminated due to significantly lower performance. **Logistic Regression** was selected as the primary candidate for in-depth hyperparameter tuning.
 
-## 🗂️ Repository Structure
+### 3. Hyperparameter Tuning
+The selected models (Logistic Regression and Random Forest) were systematically tuned using `RandomizedSearchCV` and `GridSearchCV` to find the optimal combination of hyperparameters that maximized performance.
 
-```
-heart-disease-prediction/
-│
-├── data/
-│   ├── raw/                    # Original dataset
-│   └── processed/              # Cleaned and preprocessed data
-│
-├── notebooks/
-│   ├── 01_data_exploration.ipynb
-│   ├── 02_data_preprocessing.ipynb
-│   ├── 03_model_training.ipynb
-│   └── 04_model_evaluation.ipynb
-│
-├── models/
-│   ├── best_model.pkl
-│   └── model_comparison.json
-│
-├── visualizations/
-│   ├── correlation_matrix.png
-│   ├── feature_importance.png
-│   └── roc_curves.png
-│
-├── requirements.txt
-├── README.md
-```
+### 4. Final Model Evaluation
+The best-performing model (tuned Logistic Regression) was evaluated comprehensively using multiple metrics, including a ROC curve, confusion matrix, classification report, and robust cross-validated scores.
 
-## 🏃‍♂️ Quick Start
+### 5. Feature Importance
+The `coef_` attribute of the final Logistic Regression model was used to determine which medical features were most predictive of heart disease.
 
-### Prerequisites
-- Python 3.8 or higher
-- pip package manager
+## 🏆 Final Results
 
-### Installation
+After extensive tuning and evaluation, the **Logistic Regression** model was finalized. The model's performance, validated using 5-fold cross-validation, is robust and provides a strong predictive signal.
 
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/heart-disease-prediction.git
-cd heart-disease-prediction
-```
+The final cross-validated metrics for the tuned model were:
 
-2. Install required dependencies:
-```bash
-pip install -r requirements.txt
-```
+| Metric    | Score         |
+| :-------- | :------------ |
+| Accuracy  | 84.48%        |
+| Precision | 82.08%        |
+| Recall    | 92.12%        |
+| F1-Score  | 86.73%        |
 
-3. Run the Jupyter notebooks:
-```bash
-jupyter notebook
-```
+The model's performance on the test set is visualized in the confusion matrix below:
 
-### Usage
+![Confusion Matrix](https://i.imgur.com/l7xjn3I.png)
 
-1. **Data Exploration**: Start with `01_data_exploration.ipynb` to understand the dataset
-2. **Preprocessing**: Run `02_data_preprocessing.ipynb` to clean and prepare the data
-3. **Training**: Execute `03_model_training.ipynb` to train multiple ML models
-4. **Evaluation**: Use `04_model_evaluation.ipynb` to compare model performance
+## 🚀 Technologies Used
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
+![Scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-313131?style=for-the-badge&logo=matplotlib&logoColor=white)
+![Seaborn](https://img.shields.io/badge/Seaborn-3274A1?style=for-the-badge)
 
-### Making Predictions
+## 💻 How to Run
+To replicate this project on your local machine, follow these steps:
 
-```python
-import pickle
-import pandas as pd
+1.  **Clone the repository:**
+    ```bash
+    git clone <your-repository-url>
+    cd <repository-folder-name>
+    ```
 
-# Load the trained model
-with open('models/best_model.pkl', 'rb') as file:
-    model = pickle.load(file)
+2.  **Set up a virtual environment and install dependencies:**
+    ```bash
+    python -m venv env
+    source env/bin/activate  # On Windows, use `env\Scripts\activate`
+    pip install -r requirements.txt
+    ```
+    *(If no `requirements.txt` is provided, install: `pip install numpy pandas scikit-learn matplotlib seaborn jupyter`)*
 
-# Prepare your data (example)
-patient_data = pd.DataFrame({
-    'age': [45],
-    'sex': [1],
-    'chest_pain_type': [2],
-    'resting_bp': [120],
-    'cholesterol': [240],
-    # ... add other features
-})
+3.  **Download the dataset:**
+    The `heart-disease.csv` file should be located in a `data/` subdirectory. If not, download it from the Kaggle link provided above.
 
-# Make prediction
-prediction = model.predict(patient_data)
-probability = model.predict_proba(patient_data)
-
-print(f"Heart Disease Risk: {prediction[0]}")
-print(f"Probability: {probability[0][1]:.2%}")
-```
-
-## 📊 Key Insights
-
-- **Most Important Features**: Chest pain type, maximum heart rate, and ST depression are the strongest predictors
-- **Age Factor**: Risk increases significantly after age 50
-- **Gender Differences**: Males show higher risk patterns in the dataset
-- **Exercise Correlation**: Patients with exercise-induced angina have higher disease probability
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📞 Contact
-
-- **Author**: [Saumya Khushlani]
-- **Email**: [saumyakhushlani9@gmail.com]
-
-## 🙏 Acknowledgments
-
-- Dataset source and contributors
-- Open-source community for tools and libraries
-- Healthcare professionals who provided domain insights
-
----
-
-⭐ If you found this project helpful, please give it a star!
+4.  **Launch the Jupyter Notebook:**
+    ```bash
+    jupyter notebook
+    ```
+    Open the main notebook file (`.ipynb`) and run the cells to see the complete analysis.
